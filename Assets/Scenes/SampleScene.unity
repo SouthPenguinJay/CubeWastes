@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 689938458}
   - component: {fileID: 689938463}
   - component: {fileID: 689938464}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -316,12 +316,12 @@ Transform:
   m_GameObject: {fileID: 689938457}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1000}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1254576587}
-  m_Father: {fileID: 1561577680}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &689938463
 Rigidbody:
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -772,31 +772,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3a79d3adae67a40a952168b386469c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 1300215151}
   player: {fileID: 689938461}
-  aiAnim: {fileID: 0}
---- !u!195 &1300215151
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  rb: {fileID: 1300215153}
+  forceAmount: 3
+  maxSpeed: 25
+  upForce: 2
+  followRadius: 10
+  directionChangeInterval: 3
+  randomMovementForce: 0.2
+--- !u!54 &1300215153 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1863932516907829259, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
+  m_PrefabInstance: {fileID: 7629115397883557198}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300215143}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.49999997
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.99999994
-  m_BaseOffset: 0.49999997
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &1384523695
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,8 +908,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 689938461}
+  m_Children: []
   m_Father: {fileID: 1273488370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &1561577681
@@ -992,6 +979,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1863932516907829259, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3552372322479372588, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -1043,14 +1034,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5415546044794909838, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1300215150}
-    - targetCorrespondingSourceObject: {fileID: 5415546044794909838, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1300215151}
   m_SourcePrefab: {fileID: 100100000, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 705507995}
+  - {fileID: 689938461}
   - {fileID: 1273488370}
   - {fileID: 7629115397883557198}
