@@ -19,10 +19,16 @@ public class ThrowBall : MonoBehaviour
     public float SpeedMultiplier = 1.5f;
     private NavMeshAgent movable;
 
+    public float jumpForce = 5.0f;
+    private float clickTime = 0;
+    private float clickDelay = 0.3f;
+    private Rigidbody rb;
+    private int jumpCount = 0;
+    private int maxJumps = 3;
+    private bool isGrounded = true;
 
     private bool thrown, holding;
     private Vector3 newPosition, resetPos;
-    Rigidbody rb;
    
     public LineRenderer directionGuide;
 
@@ -73,6 +79,16 @@ public class ThrowBall : MonoBehaviour
         {
             movable.enabled = false;
 
+        }
+        if (Time.time - clickTime < clickDelay)
+        {
+            // Dubbelklick detekterat
+            Jump();
+        }
+        else
+        {
+            // Första klicket
+            clickTime = Time.time;
         }
     }
  
@@ -155,6 +171,25 @@ public class ThrowBall : MonoBehaviour
 
         BallSpeed = Mathf.Clamp(BallVelocity, 10f, MaxBallSpeed * 1.2f); // Tillåter viss överskjutning av max
         swipeTime = 0;
+    }
+
+    private void Jump()
+    {
+        if (rb != null && isGrounded || jumpCount < maxJumps)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpCount++;
+            isGrounded = false;
+        }
+
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            jumpCount = 0;
+        }
     }
 
 }
