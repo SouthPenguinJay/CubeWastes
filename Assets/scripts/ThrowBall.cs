@@ -26,7 +26,7 @@ public class ThrowBall : MonoBehaviour
     private int jumpCount = 0;
     private int maxJumps = 3;
     private bool isGrounded = true;
-
+    public ParticleSystem particleSystem;
     private bool thrown, holding;
     private Vector3 newPosition, resetPos;
    
@@ -55,6 +55,17 @@ public class ThrowBall : MonoBehaviour
     private void Update()
     {
         UpdateDirectionGuide();
+        if (BallVelocity >= 1 && isGrounded  == true)
+        {
+            if (!particleSystem.isPlaying)
+            {
+                particleSystem.Play();
+            }
+        }
+        else
+        {
+            particleSystem.Stop();
+        }
     }
 
     private void UpdateDirectionGuide()
