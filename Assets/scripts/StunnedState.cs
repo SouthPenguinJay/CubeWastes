@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StunnedState : IState
+public class StunnedState1 : IState
 {
     public void Enter()
     {

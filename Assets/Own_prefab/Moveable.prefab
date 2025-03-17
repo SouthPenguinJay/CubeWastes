@@ -150,4 +150,6 @@ MonoBehaviour:
   MaxBallSpeed: 350
   angle: {x: 0, y: 0, z: 0}
   SpeedMultiplier: 1.5
+  jumpForce: 5
+  particleSystem: {fileID: 0}
   directionGuide: {fileID: 0}

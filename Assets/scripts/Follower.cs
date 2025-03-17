@@ -43,7 +43,7 @@ public class follower : MonoBehaviour
     void Update()
 
     {
-
+        Statemachine hej = gameObject.GetComponent<Statemachine>();
         Vector3 direction = (player.position - transform.position).normalized;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
