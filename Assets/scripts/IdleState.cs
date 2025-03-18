@@ -1,21 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IdleState : IState
 {
+    float jumpForce = 5.0f;
+    private Rigidbody rb;
+    private Transform selfTransform;
+    private float jumpInterval = 1.0f; // Time interval between jumps
+    private float timeSinceLastJump = 0.0f;
+    private Transform player;
+    private float followRadius = 5.0f;
+    private bool isMouseHeld = false;
+    public IdleState(Transform player)
+    {
+        this.player = player; // Pass the player's Transform during initialization
+
+    }
     public void Enter()
     {
-        // Code to execute when entering the Idle state
+        rb = GameObject.Find("Moveable").GetComponent<Rigidbody>();
+        selfTransform = GameObject.Find("Moveable").transform;
+
+        Debug.Log("Entered IdleState");
+        timeSinceLastJump = jumpInterval;
     }
 
     public void Execute()
     {
-        // Code to execute while in the Idle state
+
+
+        if (rb != null)
+        {
+            // Perform idle behavior (jumping)
+            timeSinceLastJump += Time.deltaTime;
+            if (timeSinceLastJump >= jumpInterval)
+            {
+                Debug.Log("Executing IdleState");
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                timeSinceLastJump = 0.0f; // Reset the timer
+            }
+            if (Input.GetMouseButton(2)) // 0 is the left mouse button
+            {
+                Statemachine.Instance.SetState(new AttackState());
+            }
+            // Check distance to the player
+            if (selfTransform != null && player != null)
+            {
+                float distanceToPlayer = Vector3.Distance(selfTransform.position, player.position);
+                if (distanceToPlayer > followRadius)
+                {
+                    Debug.Log("Player is far away, transitioning to FollowState");
+                    Statemachine.Instance.SetState(new FollowState(player)); // Transition to FollowState
+                }
+            }
+            else
+            {
+                Debug.LogError("Rigidbody is not assigned in IdleState");
+            }           
+        }
     }
 
     public void Exit()
     {
         // Code to execute when exiting the Idle state
+        Debug.Log("Exited IdleState");
     }
 }

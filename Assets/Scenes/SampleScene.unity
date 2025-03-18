@@ -14,8 +14,8 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.745283, g: 0.71856534, b: 0.5449003, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.34
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -765,7 +765,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5415546044794909838, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
   m_PrefabInstance: {fileID: 7629115397883557198}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1300215150
+--- !u!114 &1300215159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -774,22 +774,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1300215143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa3a79d3adae67a40a952168b386469c, type: 3}
+  m_Script: {fileID: 11500000, guid: 872c0b851c6195a4ca9ae477aae7ade2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 689938461}
-  rb: {fileID: 1300215153}
-  forceAmount: 3
-  maxSpeed: 25
-  upForce: 2
-  followRadius: 10
-  directionChangeInterval: 3
-  randomMovementForce: 0.2
---- !u!54 &1300215153 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 1863932516907829259, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
-  m_PrefabInstance: {fileID: 7629115397883557198}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1384523695
 GameObject:
   m_ObjectHideFlags: 0
@@ -5859,6 +5847,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4445438104613021692, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445438104613021692, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
       propertyPath: particleSystem
       value: 
       objectReference: {fileID: 1712047432}
@@ -5872,7 +5864,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5415546044794909838, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1300215150}
+      addedObject: {fileID: 1300215159}
   m_SourcePrefab: {fileID: 100100000, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

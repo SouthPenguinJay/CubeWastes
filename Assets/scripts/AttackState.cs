@@ -6,11 +6,14 @@ public class AttackState : IState
 {
     public void Enter()
     {
+      
+
         // Code to execute when entering the  state
     }
 
     public void Execute()
     {
+         
         // Code to execute while in the  state
 
     }
