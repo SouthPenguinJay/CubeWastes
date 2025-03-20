@@ -11,7 +11,7 @@ public class IdleState : IState
     private float jumpInterval = 1.0f; // Time interval between jumps
     private float timeSinceLastJump = 0.0f;
     private Transform player;
-    private float followRadius = 5.0f;
+    private float followRadius = 7.0f;
     private bool isMouseHeld = false;
     public IdleState(Transform player)
     {
@@ -41,9 +41,20 @@ public class IdleState : IState
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 timeSinceLastJump = 0.0f; // Reset the timer
             }
-            if (Input.GetMouseButton(2)) // 0 is the left mouse button
+            if (Input.GetMouseButton(0)) // 0 is the left mouse button
             {
-                Statemachine.Instance.SetState(new AttackState());
+                Vector3 mousePosition = Input.mousePosition;
+                Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    // Check if the clicked object has the specific tag or layer
+                    if (hit.collider.CompareTag("Follower")) // Replace with your tag
+                    {
+                        Statemachine.Instance.SetState(new AttackState());
+                    }
+                }
             }
             // Check distance to the player
             if (selfTransform != null && player != null)

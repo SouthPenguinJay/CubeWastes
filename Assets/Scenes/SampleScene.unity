@@ -5858,6 +5858,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moveable
       objectReference: {fileID: 0}
+    - target: {fileID: 5415546044794909838, guid: 630136f3d3bebe245b6c0d50b775a55b, type: 3}
+      propertyPath: m_TagString
+      value: Follower
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
