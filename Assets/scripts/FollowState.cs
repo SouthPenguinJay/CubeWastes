@@ -9,8 +9,8 @@ public class FollowState : IState
     public float followRadius = 5f;
     private float forceAmount = 9f;
     private Transform selfTransform;
+    private float maxSpeed = 5.0f;
 
-        
     public FollowState(Transform player)
     {
         this.player = player; // Assign the player's transform via constructor
@@ -38,6 +38,10 @@ public class FollowState : IState
         {
             direction = (player.position - selfTransform.position).normalized;
             rb.AddForce(direction * forceAmount, ForceMode.Acceleration);
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
         }
         if (Input.GetMouseButton(0)) // 0 is the left mouse button
         {
@@ -50,7 +54,7 @@ public class FollowState : IState
                 // Check if the clicked object has the specific tag or layer
                 if (hit.collider.CompareTag("Follower")) // Replace with your tag
                 {
-                    Statemachine.Instance.SetState(new AttackState());
+                    Statemachine.Instance.SetState(new AttackState(player));
                 }
             }
         }

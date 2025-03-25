@@ -52,7 +52,7 @@ public class IdleState : IState
                     // Check if the clicked object has the specific tag or layer
                     if (hit.collider.CompareTag("Follower")) // Replace with your tag
                     {
-                        Statemachine.Instance.SetState(new AttackState());
+                        Statemachine.Instance.SetState(new AttackState(player));
                     }
                 }
             }

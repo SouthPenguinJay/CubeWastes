@@ -8,25 +8,35 @@ public class AttackState : IState
     private Transform selfTransform;
     private Transform player;
     private float followRadius = 7.0f;
+    private Rigidbody rb;
+    public AttackState(Transform player)
+    {
+        this.player = player; // Assign the player's transform via constructor
+
+    }
     public void Enter()
     {
+        rb = GameObject.Find("Moveable").GetComponent<Rigidbody>();
         Debug.Log("Entered AttackState");
         selfTransform = GameObject.Find("Moveable").transform;
-
+         
         // Code to execute when entering the  state
     }
 
     public void Execute()
     {
-       while (velocity >= 3)
+        if (rb != null)
         {
-            Debug.Log("velocity is more than 3");
+            velocity = rb.velocity.magnitude;
+            Debug.Log("Velocity: " + velocity);
         }
+
+        
         //if hit enemy setstate stunned
         if (selfTransform != null && player != null)
         {
             float distanceToPlayer = Vector3.Distance(selfTransform.position, player.position);
-            if (distanceToPlayer > followRadius)
+            if (distanceToPlayer > followRadius && velocity < 1)
             {
                 Debug.Log("Player is far away, transitioning to FollowState");
                 Statemachine.Instance.SetState(new FollowState(player)); // Transition to FollowState

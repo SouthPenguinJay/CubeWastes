@@ -10,7 +10,7 @@ public class ThrowBall : MonoBehaviour
     float startTime, endTime, swipeDistance, swipeTime;
     private Vector2 startPos;
     private Vector2 endPos;
- 
+    public float upwardForce = 1.0f; // Adjust this value as needed
     public float MinSwipDist = 0;
     private float BallVelocity = 0;
     private float BallSpeed = 0;
@@ -161,6 +161,10 @@ public class ThrowBall : MonoBehaviour
         // Korrigera kamerans inverkan
         Vector3 worldDirection = Camera.main.transform.TransformDirection(localDirection);
         worldDirection.y = 0; // Förhindra att kamerans lutning påverkar rörelsen
+      
+       
+        worldDirection += new Vector3(0, upwardForce, 0);
+
         angle = worldDirection.normalized;
     }
 
