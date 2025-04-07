@@ -40,7 +40,7 @@ public class Statemachine : MonoBehaviour
     }
     private void Start()
     {
-        SetState(new IdleState(player));
+        SetState(new UnfoundState(player));
     }
 
     public void SetState(IState state)

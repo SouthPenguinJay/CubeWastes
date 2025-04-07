@@ -39,7 +39,7 @@ public class ThrowBall : MonoBehaviour
         resetPos = transform.position;
         movable = GetComponent<NavMeshAgent>();
 
-        if (directionGuide == null)
+       /* if (directionGuide == null)
         {
             directionGuide = new GameObject("DirectionGuide").AddComponent<LineRenderer>();
             directionGuide.startWidth = 0.02f;
@@ -50,11 +50,11 @@ public class ThrowBall : MonoBehaviour
             directionGuide.endColor = Color.blue;
 
             UpdateDirectionGuide();
-        }
+        } */
     }
     private void Update()
     {
-        UpdateDirectionGuide();
+        //UpdateDirectionGuide();
         if (BallVelocity >= 1 && isGrounded  == true)
         {
             if (!particleSystem.isPlaying)
