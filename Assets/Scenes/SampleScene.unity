@@ -1931,6 +1931,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   damageAmount: 10
+  targetGameObject: {fileID: 952018675}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4417,6 +4418,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   damageAmount: 10
+  targetGameObject: {fileID: 0}
 --- !u!1 &1384523695
 GameObject:
   m_ObjectHideFlags: 0

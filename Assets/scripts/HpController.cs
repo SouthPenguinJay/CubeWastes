@@ -8,12 +8,28 @@ public class HpController : MonoBehaviour
     public float currentHealth;
     public float damageAmount = 10f;
 
+    public GameObject targetGameObject; // Reference to the GameObject
+    private SpriteRenderer spriteRendererComponent;
     public event System.Action OnDeath;
     public event System.Action<float> OnHealthChanged;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        if (targetGameObject != null)
+        {
+            // Get the component you want to disable
+            // For example, disabling a Renderer component
+            spriteRendererComponent = targetGameObject.GetComponent<SpriteRenderer>();
+            if (spriteRendererComponent == null)
+            {
+                Debug.LogError("SpriteRenderer component not found on the target GameObject.");
+            }
+        }
+        else
+        {
+         //  Debug.LogError("Target GameObject is not assigned.");
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -34,7 +50,14 @@ public class HpController : MonoBehaviour
         }
         OnHealthChanged?.Invoke(currentHealth);
     }
-
+    void Update()
+    {
+        // Check the health condition
+        if (currentHealth < 90)
+        {
+            spriteRendererComponent.enabled = true;
+        }
+    }
     public void Heal(float amount)
     {
         currentHealth += amount;
