@@ -124,7 +124,8 @@ public class ThrowBall : MonoBehaviour
             rb.velocity *= 0.5f;
             rb.angularVelocity *= 0.5f;
             rb.AddForce(new Vector3((angle.x * BallSpeed), (angle.y * BallSpeed / 3), (angle.z * BallSpeed) * 2));
-           // rb.AddForce(new Vector3((0), (BallSpeed / 3), (-BallSpeed)));
+           // rb.AddForce(angle * BallSpeed, ForceMode.Impulse);
+            // rb.AddForce(new Vector3((0), (BallSpeed / 3), (-BallSpeed)));
             rb.useGravity = true;
             holding = false;
             thrown = true;
@@ -178,7 +179,7 @@ public class ThrowBall : MonoBehaviour
             BallVelocity = normalizedSwipe * SpeedMultiplier * MaxBallSpeed;
 
             // Om swipen är nära maxlängd, ge en extra boost
-            if (swipeDistance > 250f)
+            if (swipeDistance > 200f)
             {
                 BallVelocity *= 1.5f; // 50% extra fart vid maxdrag
             }
